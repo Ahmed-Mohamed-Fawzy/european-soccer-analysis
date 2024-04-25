@@ -35,7 +35,8 @@ with open("animation.json") as source:
 st_lottie(animation)
 
 # ABout Data section
-st.subheader("About Dataset")
+st.header("About Data")
+st.subheader("The European Soccer Database from Kaggle contains data on soccer matches, players, and teams from different European countries spanning the years 2008 to 2016.")
 st.write("• Date: refers to the specific day on which a match was played.")
 st.write("• Stage: every stage throughout the season.")
 st.write("• Home/Away: identify if the match is on the home team or away.")
