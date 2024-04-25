@@ -52,6 +52,6 @@ st.write("• team_name: The complete name of the team.")
 st.write("• league: refers to the league in which the team participates.")
 st.write("• country: refers to the nation or geographical location of the team.")
 
-btn = st.button("Display random samples")
+btn = st.button("Show a random sample from the final dataset")
 if btn:
     st.write(df.sample(5))
