@@ -73,6 +73,7 @@ with c1:
     )
     home_formations = sorted(home_formations.items(), key=lambda x: x[1])
     home_formations = dict(home_formations)
+    del home_formations["Unobserved"]
 
     fig_home_formations = px.bar(
         x=home_formations.values(),
@@ -90,6 +91,7 @@ with c2:
     )
     away_formations = sorted(away_formations.items(), key=lambda x: x[1])
     away_formations = dict(away_formations)
+    del away_formations["Unobserved"]
 
     fig_away_formations = px.bar(
         x=away_formations.values(),
@@ -102,9 +104,14 @@ with c2:
 
 # most used formation per leagues
 dict_leagues = dict(df.groupby(["league"])["formation"].agg(pd.Series.mode))
+dict_leagues["Ekstraklasa"] = "4-5-1"
+
 dict_leagues_freq = {}
 for item in list(dict_leagues.keys()):
-    freq = df.groupby(["league"])["formation"].value_counts()[item][0]
+    if item != "Ekstraklasa":
+        freq = df.groupby(["league"])["formation"].value_counts()[item][0]
+    else:
+        freq = df.groupby(["league"])["formation"].value_counts()[item][1]
     dict_leagues_freq[item] = freq
 
 fig_league = px.bar(
